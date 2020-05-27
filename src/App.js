@@ -5,8 +5,12 @@ import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
-import { Header as HeaderView } from './views/Layout';
-import { Home as HomeView } from './views/';
+import {
+  Header as HeaderView,
+  Footer as FooterView,
+  Home as HomeView,
+  Mosaic as MosaicView
+} from './views';
 
 
 const browserHistory = createBrowserHistory({ basename: '' });
@@ -19,6 +23,8 @@ export default class App extends Component {
         <Router history={browserHistory}>
           <HeaderView />
           <Route exact path="/" component={HomeView} />
+          <Route exact path="/galery" component={MosaicView} />
+          <FooterView />
         </Router>
       </ThemeProvider>
     );

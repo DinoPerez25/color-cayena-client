@@ -3,6 +3,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
 } from '@material-ui/core';
+
+export default function Home() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      HOME
+    </div>
+  );
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -15,21 +26,3 @@ const useStyles = makeStyles((theme) => ({
     height: 450,
   },
 }));
-
-const tileData = [
-  {
-    img: '',
-    title: 'Image',
-    author: 'author',
-    cols: 2,
-  },
-];
-export default function Home() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      HOME
-    </div>
-  );
-}
