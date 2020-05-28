@@ -1,114 +1,79 @@
-import React, { forwardRef } from 'react';
+import React, { useContext } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
-import img from '../../assets/images/53.jpg';
 import { Redirect } from 'react-router-dom';
+import {GALERY_IMAGES} from '../../utils/GaleryItems';
 
+import { GaleryContext} from '../../contexts/GaleryContext';
 
+import {
+  Typography,
+  ButtonBase
+} from '@material-ui/core';
 
-export default function Mosaic() {
+const Mosaic = (props) => {
   const classes = useStyles();
+  const { setCurrentPhoto, setOpen } = useContext(GaleryContext);
 
-  const handleClick = (title) => {
-    <Redirect to='/'></Redirect>
+  const getImg = (id) => {
+    return <img className={classes.img} src={'/images/'+id+'.jpg'}/>
   }
+  const onClickSelection = (img) => {
+    setCurrentPhoto({
+      id:img.id,
+      title:img.title,
+      author:img.author,
+      description:img.description
+    });
+    setOpen(true);
+  };
+
   return (
     <div className={classes.root}>
-      <GridList cellHeight={180} cols={6} className={classes.gridList}>
-        {tileData.map((tile) => (
-          <GridListTile
-            key={tileData.indexOf(tile)}
-            onClick={handleClick(tile.title)}
-            className={classes.img}>
-            <img src={img} />
-            <GridListTileBar
-              title={tile.title}
-              subtitle={<span>by: {tile.author}</span>}
-              actionIcon={
-                <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                  <InfoIcon />
-                </IconButton>
-              }
-            />
-          </GridListTile>
-        ))}
-      </GridList>
+      <div className={classes.galery}>
+        {GALERY_IMAGES.map((img) => 
+        <ButtonBase
+        key={GALERY_IMAGES.indexOf(img)}
+        focusRipple
+        className={classes.imgContainer}
+        onClick={(event) => onClickSelection(img)}
+      >
+        <span>
+          {getImg(img.id)}
+        </span>
+          <Typography
+            component="span"
+            variant="subtitle1"
+            color="inherit"
+            className={classes.title}
+          >
+            {img.title}
+          </Typography>
+      </ButtonBase>
+        )}
+      </div>
     </div>
   );
-}
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    width:'100%',
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  galery:{
+    width:'80%',
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    padding: '20px 20px',
-    backgroundColor: theme.palette.background.paper,
+    justifyContent: 'space-between',
   },
-  gridList: {
-    width: '80%',
-    height: '100%',
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
+  imgContainer: {
+    margin:10
   },
   img: {
-    cursor: 'pointer'
-  }
+    width:'200px',
+  },
 }));
-const tileData = [
-  {
-    id: 1,
-    img: img,
-    title: 'Image',
-    author: 'author',
-  },
-  {
-    id: 2,
-    img: img,
-    title: 'Image',
-    author: 'author',
-  },
-  {
-    id: 3,
-    img: img,
-    title: 'Image',
-    author: 'author',
-  },
-  {
-    id: 4,
-    img: img,
-    title: 'Image',
-    author: 'author',
-  },
-  {
-    id: 5,
-    img: img,
-    title: 'Image',
-    author: 'author',
-  },
-  {
-    id: 6,
-    img: img,
-    title: 'Image',
-    author: 'author',
-  },
-  {
-    id: 7,
-    img: img,
-    title: 'Image',
-    author: 'author',
-  },
-  {
-    id: 8,
-    img: img,
-    title: 'Image',
-    author: 'author',
-  },
-];
+export default Mosaic;

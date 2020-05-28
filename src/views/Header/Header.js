@@ -1,13 +1,17 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import logo from '../../assets/images/logo.svg';
 
+import {GaleryContext} from '../../contexts/GaleryContext';
+
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import PaletteIcon from '@material-ui/icons/Palette';
+import DialogGalery from '../../components/DialogGalery';
 import {
     Button,
     AppBar,
     Toolbar,
     Typography,
+    Fab
 } from '@material-ui/core';
 
 const pages = [
@@ -38,11 +42,12 @@ const CustomRouterLink = forwardRef((props, ref) => (
 export default function Header() {
     const classes = useStyles();
     const theme = useTheme(useStyles)
+    const {setOpen} = useContext(GaleryContext);
     return (
         <div className={classes.root} >
             <div className={classes.headerContainer}>
                 <div className={classes.header}>
-                    <img className={classes.logo} src={logo} alt="logo" />
+                    <img className={classes.logo} src='./images/logo.svg' alt="logo" />
                 </div>
                 <AppBar className={classes.appBar} position="static">
                     <Toolbar className={classes.toolbar}>
@@ -60,6 +65,10 @@ export default function Header() {
                     </Toolbar>
                 </AppBar>
             </div>
+            <Fab className={classes.fab} color="primary" aria-label="add" onClick={setOpen}>
+                <PaletteIcon />
+            </Fab>
+            <DialogGalery/>
         </div>
     );
 }
@@ -106,5 +115,10 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         width: '100%',
-    }
+    },
+    fab: {
+        position: 'absolute',
+        bottom: theme.spacing(10),
+        right: theme.spacing(10),
+    },
 }));

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { ThemeProvider } from '@material-ui/styles';
+import { GaleryProvider } from './contexts/GaleryContext';
 import theme from './theme';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
@@ -20,12 +21,14 @@ export default class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
+        <GaleryProvider>
         <Router history={browserHistory}>
           <HeaderView />
           <Route exact path="/" component={HomeView} />
           <Route exact path="/galery" component={MosaicView} />
           <FooterView />
         </Router>
+        </GaleryProvider>
       </ThemeProvider>
     );
   }

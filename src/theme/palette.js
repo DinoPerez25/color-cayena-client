@@ -15,13 +15,19 @@ export default {
   primary: {
     contrastText: white,
     dark: colors.red[900],
-    main: colors.red[800],
+    main: colors.red[900],
     light: colors.red[400]
   },
   secondary: {
     contrastText: white,
-    dark: colors.yellow[700],
-    main: colors.yellow[600],
+    dark: colors.green[800],
+    main: colors.green['A700'],
+    light: colors.green[200]
+  },
+  complementary: {
+    contrastText: white,
+    dark: colors.yellow[600],
+    main: colors.yellow['A700'],
     light: colors.yellow[200]
   },
   offBack: {
