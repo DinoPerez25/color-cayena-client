@@ -49,7 +49,6 @@ export default function Home() {
             ciudad que ha crecido con las familias Barranquilleras, en sus albumnes y herencia 
             familiar. Si desean particiar y hacer parte de esta recopilación, pueden hacerlo en
             la pestaña <a className={classes.link} href="./colaborate">APORTA AL PROYECTO.</a>
-
           </Typography>
         </Grid>
       </Grid>
