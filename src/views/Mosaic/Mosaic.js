@@ -1,19 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {GALERY_IMAGES} from '../../utils/GaleryItems';
-import { colorization } from '../../services/api';
 
 import { GaleryContext} from '../../contexts/GaleryContext';
 
 import {
-  Typography,
-  ButtonBase
+  DialogActions,
+  ButtonBase,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Button
 } from '@material-ui/core';
 
 const Mosaic = (props) => {
   const classes = useStyles();
   const { setCurrentPhoto, setOpen } = useContext(GaleryContext);
-
+  const [openGuide, setOpenGuide] = useState(false);
+  const handleClose = () => {
+    setOpenGuide(false);
+  };
   /*const Colorization = (id) => {
     colorization(id)
         .then(response => {
@@ -39,6 +45,9 @@ const Mosaic = (props) => {
     });
     setOpen(true);
   };
+  useEffect(()=>{
+    /*setOpenGuide(true)*/
+  },[])
 
   return (
     <div className={classes.root}>
@@ -56,6 +65,19 @@ const Mosaic = (props) => {
       </ButtonBase>
         )}
       </div>
+      <Dialog maxWidth='md' onClose={handleClose} aria-labelledby="customized-dialog-title" open={openGuide}>
+        <DialogTitle id="customized-dialog-title" onClose={handleClose} align='center'>
+          BIENVENIDO A LA GALERÍA 
+        </DialogTitle>
+        <DialogContent dividers>
+        <img src="" alt="Guía de uso"/>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose} color="primary">
+            Cerrar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

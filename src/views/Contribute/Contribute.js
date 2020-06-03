@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 import { makeStyles, withStyles, fade } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {
-  Paper,
   Grid,
   Typography,
-  Avatar,
-  TextField,
-  InputBase,
-  InputLabel
+  Button,
 } from '@material-ui/core';
 
 
@@ -39,7 +35,13 @@ export default function Contribute() {
     <div className={classes.root}>
       <Grid container spacing={3} className={classes.content}>
         <Grid item xs={6}>
-        ¿Como puedes aportar?
+        <Typography variant='h3' align='center' className={classes.text}>¿Como puedes aportar?</Typography>
+          <Typography variant='h4' className={classes.text} paragraph>
+            Quere construir y comenzar la recopilacion colectiva de esa parte de la historia de la
+            ciudad que ha crecido con las familias Barranquilleras, en sus albumnes y herencia 
+            familiar. Si desean particiar y hacer parte de esta recopilación, te invitamos a seleccionar
+            esas fotografías que quieres aportar y enviarlas por medio de este formulario.
+          </Typography>
         </Grid>
         <Grid item xs={6}>
           <form
@@ -60,11 +62,11 @@ export default function Contribute() {
             <label>Descripción:</label>
             <input type="text" name="description" />
             <label>Foto:</label>
-            <input type="file" name="upload" />
+            <input type="file" name="upload" className={classes.fileinput}/>
             {status === "SUCCESS" ? (
             <p>¡Muchas gracias por apoyar ColorCayena y a la historia de Barranquilla!</p>
             ) : (
-            <button className={classes.buttonform}>Submit</button>)
+            <Button variant="contained" color="primary" className={classes.buttonform}>Submit</Button>)
             }
             {status === "ERROR" && <p>Lo sentimos, ha ocurrido un error, vuelve a intentar el envío.</p>}
           </form>
@@ -81,7 +83,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent:'center',
     alignItems:'center',
-    fontFamily:'Poppins'
+    fontFamily:'Poppins',
+    marginTop:50
   },
   content:{
     width:'80%'
@@ -93,7 +96,16 @@ const useStyles = makeStyles((theme) => ({
     fontFamily:'inherit'
   },
   buttonform:{
-    maxWidth:'100px',
+    alignSelf:'center',
+    width:'400px',
+    margin:20,
     color: theme.palette.text.secondary
+  },
+  text:{
+    fontFamily:'Poppins',
+    marginBottom:20
+  },
+  fileinput:{
+    color: theme.palette.white
   }
 }));

@@ -2,10 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {
-  Paper,
   Grid,
   Typography,
-  Avatar,
   IconButton
 } from '@material-ui/core';
 
@@ -16,8 +14,8 @@ export default function Footer() {
     <div className={classes.root}>
       <Grid container wrap="nowrap" spacing={1}>
         <Grid item xs={12}>
-          <IconButton aria-label="delete" className={classes.margin}>
-            <GitHubIcon fontSize="small" />
+          <IconButton href='https://github.com/DinoPerez25/color-cayena-front' aria-label="delete" className={classes.gradient}>
+            <GitHubIcon fontSize="small"/>
           </IconButton>
           <Typography >ColorCayena</Typography>
           <Typography >Andrés Pérez y Dinorah Pérez</Typography>
@@ -33,5 +31,12 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     padding: 40,
     textAlign: 'center'
+  },
+  gradient:{
+    borderRadius: 2,
+    background: theme.palette.white,
+    background: 'linear-gradient(90deg, rgba(166,15,15,1) 0%, rgba(40,135,47,1) 53%)',
+    '-webkit-background-clip': 'text',
+    '-webkit-text-fill-color': 'transparent'
   }
 }));
