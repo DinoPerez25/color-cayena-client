@@ -29,7 +29,7 @@ const pages = [
     },
     {
         title: 'Aporta al proyecto',
-        href: '/color-cayena',
+        href: '/contribute',
     },
 ];
 const CustomRouterLink = forwardRef((props, ref) => (

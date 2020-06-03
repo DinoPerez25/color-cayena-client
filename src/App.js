@@ -10,7 +10,8 @@ import {
   Header as HeaderView,
   Footer as FooterView,
   Home as HomeView,
-  Mosaic as MosaicView
+  Mosaic as MosaicView,
+  Contribute as ContributeView
 } from './views';
 
 
@@ -26,6 +27,7 @@ export default class App extends Component {
           <HeaderView />
           <Route exact path="/" component={HomeView} />
           <Route exact path="/galery" component={MosaicView} />
+          <Route exact path="/contribute" component={ContributeView} />
           <FooterView />
         </Router>
         </GaleryProvider>

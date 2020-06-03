@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-import { NavLink as RouterLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Redirect } from 'react-router-dom';
 import {GALERY_IMAGES} from '../../utils/GaleryItems';
+import { colorization } from '../../services/api';
 
 import { GaleryContext} from '../../contexts/GaleryContext';
 
@@ -15,14 +14,27 @@ const Mosaic = (props) => {
   const classes = useStyles();
   const { setCurrentPhoto, setOpen } = useContext(GaleryContext);
 
+  /*const Colorization = (id) => {
+    colorization(id)
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            console.log(json);
+        })
+        .catch(error => {
+            console.log("Colorization(Mosaic.js):" + error.message);
+        });
+  };*/
   const getImg = (id) => {
-    return <img className={classes.img} src={'/images/'+id+'.jpg'}/>
+    return <img className={classes.img} src={process.env.BUCKET_URL+'/originals/'+id+'.jpg'}/>
   }
   const onClickSelection = (img) => {
     setCurrentPhoto({
       id:img.id,
       title:img.title,
       author:img.author,
+      reference:img.reference,
       description:img.description
     });
     setOpen(true);
@@ -41,14 +53,6 @@ const Mosaic = (props) => {
         <span>
           {getImg(img.id)}
         </span>
-          <Typography
-            component="span"
-            variant="subtitle1"
-            color="inherit"
-            className={classes.title}
-          >
-            {img.title}
-          </Typography>
       </ButtonBase>
         )}
       </div>

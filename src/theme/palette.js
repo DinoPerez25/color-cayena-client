@@ -36,7 +36,7 @@ export default {
   },
   text: {
     primary: white,
-    secondary: colors.blueGrey[600],
+    secondary: colors.grey[700],
     link: colors.blue[600]
   },
   background: {

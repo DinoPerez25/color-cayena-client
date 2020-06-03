@@ -9,11 +9,17 @@ export const GaleryProvider = ({ children }) => {
         id:1,
         title:'-',
         author:'-',
+        reference:'-',
         description:'-'
     });
+    const [currentColorPhoto, setCurrentColorPhoto ] = useState(null);
 
     return (
-        <GaleryContext.Provider value={{ currentPhoto, setCurrentPhoto, open, setOpen }}>
+        <GaleryContext.Provider value={{ 
+            currentPhoto, setCurrentPhoto, 
+            open, setOpen,
+            currentColorPhoto, setCurrentColorPhoto
+        }}>
             {children}
         </GaleryContext.Provider>
     );
