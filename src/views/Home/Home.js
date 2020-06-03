@@ -41,14 +41,14 @@ export default function Home() {
             ColorCayena es un proyecto que tiene como objetivo darle color a la historia de
             Barranquilla mediante herramientas de ComputerVision. Se presentan 65 fotografías
             escogidas de un conjunto, las cuales se alojan en los recursos de la Biblioteca de
-            Universidad del Norte, Karl C. Parrish. Ingresa a la <a className={classes.link} href="./colaborate">GALERÍA</a> y descubre a la 
+            Universidad del Norte, Karl C. Parrish. Ingresa a la <span className={classes.link} >GALERÍA</span> y descubre a la 
             Barranquilla antigua a color.
           </Typography>
           <Typography variant='h4' className={classes.text} paragraph>
             Tambien queremos iniciar la recopilacion colectiva de esa parte de la historia de la
             ciudad que ha crecido con las familias Barranquilleras, en sus albumnes y herencia 
             familiar. Si desean particiar y hacer parte de esta recopilación, pueden hacerlo en
-            la pestaña <a className={classes.link} href="./colaborate">APORTA AL PROYECTO.</a>
+            la pestaña <span className={classes.link}>APORTA AL PROYECTO.</span>
           </Typography>
         </Grid>
       </Grid>
