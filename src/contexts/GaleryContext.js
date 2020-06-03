@@ -5,6 +5,7 @@ export const GaleryContext = React.createContext(null);
 export const GaleryProvider = ({ children }) => {
 
     const [ open, setOpen] = useState(false);
+    const [ openGuide, setOpenGuide] = useState(false);
     const [currentPhoto, setCurrentPhoto] = useState({
         id:1,
         title:'-',
@@ -18,7 +19,8 @@ export const GaleryProvider = ({ children }) => {
         <GaleryContext.Provider value={{ 
             currentPhoto, setCurrentPhoto, 
             open, setOpen,
-            currentColorPhoto, setCurrentColorPhoto
+            currentColorPhoto, setCurrentColorPhoto,
+            openGuide, setOpenGuide
         }}>
             {children}
         </GaleryContext.Provider>

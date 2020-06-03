@@ -22,6 +22,7 @@ export default function CustomizedDialogs() {
   const classes = useStyles();
   const{currentPhoto, open, setOpen} = useContext(GaleryContext);
   const [state, setState] = useState(false);
+  const [openGuide, setOpenGuide] = useState(true);
   const [buffer, setBuffer] = useState(0);
   const onChangeImage=()=>{
     setState(!state)
@@ -43,8 +44,10 @@ export default function CustomizedDialogs() {
   }
   const handleClose = () => {
     setOpen(false);
+    setState(false);
   };
-  useEffect(()=>{},[state, buffer])
+  useEffect(()=>{
+  },[state, buffer])
 
   return (
     <div className={classes.root}>
