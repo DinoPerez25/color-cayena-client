@@ -20,7 +20,7 @@ import { GaleryContext } from '../contexts/GaleryContext';
 
 export default function CustomizedDialogs() {
   const classes = useStyles();
-  const{currentPhoto, open, setOpen} = useContext(GaleryContext);
+  const {currentPhoto, open, setOpen} = useContext(GaleryContext);
   const [state, setState] = useState(false);
   const [openGuide, setOpenGuide] = useState(true);
   const [buffer, setBuffer] = useState(0);
@@ -45,6 +45,7 @@ export default function CustomizedDialogs() {
   const handleClose = () => {
     setOpen(false);
     setState(false);
+    setBuffer(getbuffer())
   };
   useEffect(()=>{
   },[state, buffer])
