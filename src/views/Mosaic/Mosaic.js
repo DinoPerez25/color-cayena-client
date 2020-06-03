@@ -46,7 +46,7 @@ const Mosaic = (props) => {
     setOpen(true);
   };
   useEffect(()=>{
-    setOpenGuide(true)
+    /*setOpenGuide(true)*/
   },[])
 
   return (
