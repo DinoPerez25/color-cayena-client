@@ -1,6 +1,7 @@
 import React, {useContext, useState,useEffect, forwardRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link as Redirect } from 'react-router-dom';
+import { colorization } from '../services/api';
 
 import {
   Button,
@@ -13,7 +14,8 @@ import {
   Grid,
   Tooltip,
   Link,
-  LinearProgress
+  LinearProgress,
+  CircularProgress
 } from '@material-ui/core';
 
 import { GaleryContext } from '../contexts/GaleryContext';
@@ -22,11 +24,18 @@ export default function CustomizedDialogs() {
   const classes = useStyles();
   const {currentPhoto, open, setOpen} = useContext(GaleryContext);
   const [state, setState] = useState(false);
+  const [currentColor, setCurrentColor] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [openGuide, setOpenGuide] = useState(true);
   const [buffer, setBuffer] = useState(0);
+
   const onChangeImage=()=>{
     setState(!state)
     setBuffer(getbuffer())
+    if(!state){
+      setLoading(true)
+      getColorization(currentPhoto.id);
+    }
   }
   const getbuffer = () =>{
     if(state){
@@ -39,13 +48,26 @@ export default function CustomizedDialogs() {
     if(!state){
       return <img className={classes.imgHome}  src={process.env.BUCKET_URL+'/originals/'+currentPhoto.id+'.jpg'}/>
     }else{
-      return <img className={classes.imgHome}  src={process.env.BUCKET_URL+'/colors/'+currentPhoto.id+'_color.png'}/>
+      return <img className={classes.imgHome}  src={currentColor}/>
     }
   }
+  function getColorization(id) {
+    colorization(id)
+        .then(response => {
+            return response;
+        })
+        .then(response => {
+            setLoading(false);
+            setCurrentColor(response);
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
   const handleClose = () => {
     setOpen(false);
     setState(false);
-    setBuffer(getbuffer())
+    setBuffer(getbuffer());
   };
   useEffect(()=>{
   },[state, buffer])
@@ -65,6 +87,11 @@ export default function CustomizedDialogs() {
               inputProps={{ 'aria-label': 'primary checkbox' }}
               align='right'
               />
+              {loading? (
+                <CircularProgress />
+              ):(
+                <Typography variant='h5' className={classes.text}>----</Typography>
+              )}
             </Grid>
             <Grid item xs={4}>
             </Grid>
