@@ -4,9 +4,8 @@
   "homepage": "./.",
   "private": false,
   "scripts": {
-    "start": "webpack-dev-server",
-    "serve": "node server.js",
-    "build": "webpack"
+    "start": "node server.js",
+    "build": "webpack -p"
   },
   "eslintConfig": {
     "extends": "react-app"
